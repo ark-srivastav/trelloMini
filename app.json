@@ -1,0 +1,12 @@
+{
+  "name": "trelloMini",
+  "displayName": "trelloMini",
+  "expo": {
+    "name": "trelloMini",
+    "slug": "trelloMini",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
