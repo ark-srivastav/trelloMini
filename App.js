@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from "react-native"
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler"
 import { Input } from "./components"
 import Boards from "./Screens/Boards"
+import List from "./Screens/List"
 
 export default function App() {
   const Navigator = createStackNavigator()
@@ -35,6 +36,7 @@ export default function App() {
           name="Boards"
           component={Boards}
           options={{
+            title:"Boards",
             headerStyle: {
               backgroundColor: "#0079bd",
             },
@@ -42,6 +44,17 @@ export default function App() {
           }}
         />
         <Navigator.Screen name="Home" component={x} />
+        <Navigator.Screen
+          name="List"
+          component={List}
+          options={{
+            title:"",
+            headerStyle: {
+              backgroundColor: "#0079bd",
+            },
+            headerTintColor: "#fff"
+          }}
+        />
       </Navigator.Navigator>
     </NavigationContainer>
   )

@@ -18,7 +18,7 @@ export default BoardFunctions = (navigation) => {
     } catch (error) {}
   }
   const onPress = (index) => {
-    navigation.navigate("Home")
+    navigation.navigate("List", {boardId: index, data:values})
     console.log("---- pressed -----",index)
     console.log("listIDs---->", values.list.map(each=>{
       if(each.boardId===index){
