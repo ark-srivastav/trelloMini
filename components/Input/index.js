@@ -4,7 +4,7 @@ export default Input = ({ value, placeholder, onChangeText }) => {
   return (
     <View>
       <TextInput
-        placeholder={placeholder}
+        placeholder={placeholder?placeholder:"Enter text here"}
         value={value}
         onChangeText={onChangeText}
       />

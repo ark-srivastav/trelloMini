@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { Input } from './components';
+import Boards from './Screens/Boards';
 
 export default function App() {
   const [value, setValue]=useState("")
@@ -9,7 +11,8 @@ export default function App() {
     setValue(text)
   }
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+    <View>
       <Text>Open up App.js to start working on your app!</Text>
       <Input value={value}
       placeholder="woo"
@@ -17,6 +20,8 @@ export default function App() {
       />
       <StatusBar style="auto" />
     </View>
+    <Boards/>
+    </ScrollView>
   );
 }
 
@@ -29,3 +34,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+

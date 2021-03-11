@@ -1,2 +1,3 @@
 import Input from "./Input/index"
-export { Input }
+import Loader from "./Loader"
+export { Input, Loader }
