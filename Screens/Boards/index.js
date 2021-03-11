@@ -1,29 +1,52 @@
+import { StatusBar } from "expo-status-bar"
 import React from "react"
-import { View, ScrollView, TouchableOpacity, Text } from "react-native"
+import {
+  View,
+  ScrollView,
+  Text,
+  Dimensions,
+} from "react-native"
 import BoardFunctions from "./BoardFunctions"
+import BoardCard from "./components/BoardCard"
 
-export default Board = () => {
-  const { values, onPress, loading } = BoardFunctions()
-  const boards = (boardData) => {
-  const abc=(index)=>onPress(index)
+export default Board = ({ navigation }) => {
+  const { values, onPress, loading } = BoardFunctions(navigation)
+  const width = Dimensions.get("window").width
+  const userTag = () => {
     return (
       <View
-        style={{ marginVertical: 15, backgroundColor: "pink", width: 100 }}
-        key={boardData.id + "23749"}
+        style={{
+          width: width,
+          paddingHorizontal: 15,
+          paddingVertical: 13,
+          backgroundColor: "#fff",
+          borderBottomWidth: 0.4,
+          borderColor: "#4D5356",
+          marginBottom: 5,
+        }}
       >
-        <TouchableOpacity onPress={abc}>
-          <Text>{boardData.title}</Text>
-        </TouchableOpacity>
+        <Text style={{ color: "#000" }}>Ark Srivastav's Workspace</Text>
       </View>
     )
   }
   return (
-    <View>
+    <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+      <StatusBar
+        style="auto"
+        barStyle="light-content"
+        backgroundColor="#006ba4"
+      />
+      {userTag()}
       {!loading
-        ? values.boards.map((each) => {
-            return boards(each)
+        ? values &&
+          values.boards &&
+          values.boards.map((each) => {
+            return (
+              <BoardCard onPress={() => onPress(each.id)} boardData={each} />
+            )
           })
         : null}
-    </View>
+        
+    </ScrollView>
   )
 }

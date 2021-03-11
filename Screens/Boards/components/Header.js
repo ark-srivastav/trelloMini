@@ -9,7 +9,6 @@ export default Header = () => {
     return (
       <View style={{ flexDirection: "row", justifyContent:"flex-end" }}>
         <Text>BOARDS</Text>
-        
       </View>
     )
   }
