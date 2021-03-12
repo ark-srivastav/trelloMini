@@ -7,28 +7,14 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler"
 import { Input } from "./components"
 import Boards from "./Screens/Boards"
 import List from "./Screens/List"
-
+import Details from "./Screens/Details"
 export default function App() {
   const Navigator = createStackNavigator()
   const [value, setValue] = useState("")
   const onChangeText = (text) => {
     setValue(text)
   }
-  const x = ({ navigation }) => {
-    return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <View>
-          <Text>Open up App.js to start working on your app!</Text>
-          <Input value={value} placeholder="woo" onChangeText={onChangeText} />
-          <TouchableOpacity onPress={() => navigation.navigate("Boards")}>
-            <Text>hello</Text>
-          </TouchableOpacity>
-          <StatusBar style="auto" barStyle="light-content" backgroundColor="#000000"/>
-        </View>
-        {/* <Boards /> */}
-      </ScrollView>
-    )
-  }
+
   return (
     <NavigationContainer>
       <Navigator.Navigator>
@@ -36,23 +22,34 @@ export default function App() {
           name="Boards"
           component={Boards}
           options={{
-            title:"Boards",
+            title: "Boards",
             headerStyle: {
               backgroundColor: "#0079bd",
             },
-            headerTintColor: "#fff"
+            headerTintColor: "#fff",
           }}
         />
-        <Navigator.Screen name="Home" component={x} />
         <Navigator.Screen
           name="List"
           component={List}
           options={{
-            title:"",
+            title: "",
             headerStyle: {
               backgroundColor: "#0079bd",
             },
-            headerTintColor: "#fff"
+            headerTintColor: "#fff",
+          }}
+        />
+        <Navigator.Screen
+          name="Details"
+          component={Details}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#fff",
+              elevation:0
+            },
+            headerTintColor: "#000",
           }}
         />
       </Navigator.Navigator>

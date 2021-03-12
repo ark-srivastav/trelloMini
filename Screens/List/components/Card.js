@@ -6,11 +6,14 @@ export default Card = ({ title, onPress }) => {
       onPress={onPress}
       style={{
         justifyContent: "center",
-        alignItems: "start",
+        alignItems: "flex-start",
         backgroundColor:"#fff",
-        borderWidth: 1,
-        borderRadius:5,
-        margin: 5,
+        elevation:3,
+        borderRadius:3,
+        marginVertical: 8,
+        paddingHorizontal:10,
+        marginHorizontal:5
+
       }}
     >
       <Text>{title}</Text>

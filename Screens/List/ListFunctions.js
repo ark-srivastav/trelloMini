@@ -7,12 +7,14 @@ export default ListFunctions = (route, navigation) => {
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(true)
   const [list, setList] = useState([])
+  const [value, setValue] = useState("")
   const width = Dimensions.get("window").width * 0.75
   const height = Dimensions.get("window").height * 0.25
+  const maxHeight = Dimensions.get("window").height * 0.75
   useEffect(() => {
-    abc()
+    basicSet()
   }, [])
-  const abc = () => {
+  const basicSet = () => {
     navigation.setOptions({
       title: title,
       headerStyle: {
@@ -20,6 +22,10 @@ export default ListFunctions = (route, navigation) => {
       },
     })
     getDataSet()
+  }
+  //user input for list or card
+  const onChangeText = (text) => {
+    setValue(text)
   }
   //get the data from cache
   const getDataSet = async () => {
@@ -34,8 +40,13 @@ export default ListFunctions = (route, navigation) => {
   }
   // returns array of cards present in the List
   const listCard = (list) => {
-    //  log([" list data !! ",findCardsList(list.id, data)])
     return findCardsList(list.id, data)
+  }
+
+  const goToDetails = (card) => {
+    navigation.navigate("Details", {
+      card: card,
+    })
   }
 
   return {
@@ -47,12 +58,17 @@ export default ListFunctions = (route, navigation) => {
     data,
     loading,
     list,
+    //for input purpose
+    value,
 
     //constants
     width,
     height,
+    maxHeight,
 
     //functions
     listCard,
+    onChangeText,
+    goToDetails,
   }
 }
