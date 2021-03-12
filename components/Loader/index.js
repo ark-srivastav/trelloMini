@@ -1,8 +1,10 @@
 import React from "react"
-import { ActivityIndicator, View } from "react-native"
+import { ActivityIndicator, View , Text} from "react-native"
 
-export default Loader = () => (
-  <View style={{ flex: 1, justifyContent: "center" }}>
-    <ActivityIndicator size="large" />
-  </View>
-)
+export default Loader = () => {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems:"center" }}>
+      <ActivityIndicator size="large" color="#00ff00"/>
+    </View>
+  )
+}

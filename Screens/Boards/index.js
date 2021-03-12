@@ -1,11 +1,6 @@
 import { StatusBar } from "expo-status-bar"
 import React from "react"
-import {
-  View,
-  ScrollView,
-  Text,
-  Dimensions,
-} from "react-native"
+import { View, ScrollView, Text, Dimensions } from "react-native"
 import BoardFunctions from "./BoardFunctions"
 import BoardCard from "./components/BoardCard"
 
@@ -42,11 +37,16 @@ export default Board = ({ navigation }) => {
           values.boards &&
           values.boards.map((each) => {
             return (
-              <BoardCard onPress={() => onPress(each.id)} boardData={each} />
+              <BoardCard
+                onPress={() =>
+                  onPress(each.id, each.color, each.headerColor, each.title)
+                }
+                boardData={each}
+                key={each.id+"BoardsList"}
+              />
             )
           })
         : null}
-        
     </ScrollView>
   )
 }

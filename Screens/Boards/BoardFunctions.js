@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react"
-import { getData, storeData, cloneIt } from "../../HelperTools"
+import { getData, storeData, log } from "../../HelperTools"
 import { data, keyName } from "../../Data"
 export default BoardFunctions = (navigation) => {
   const [values, setValues] = useState({})
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    console.log("start useEffect at bfunc")
     saveToCache() // for test
   }, [])
 
   const saveToCache = async () => {
     try {
       await storeData(keyName, data)
-      await setValues(data)
-      console.log(values, "-----------------data loaded")
+      setValues(data)
+      const pp= await getData(keyName)
+      log(["data", pp])
       setLoading(false)
     } catch (error) {}
   }
-  const onPress = (index) => {
-    navigation.navigate("List", {boardId: index, data:values})
-    console.log("---- pressed -----",index)
-    console.log("listIDs---->", values.list.map(each=>{
-      if(each.boardId===index){
-        return each
-      }
-      else return null
-    }))
+  const onPress = (boardId, color, headerColor, title) => {
+    navigation.navigate("List", {
+      boardId: boardId,
+      data: values,
+      color: color,
+      headerColor: headerColor,
+      title: title,
+    })
+    log(["---- pressed -----", boardId])
   }
   return {
     //states
