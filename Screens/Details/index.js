@@ -1,14 +1,10 @@
 import { StatusBar } from "expo-status-bar"
-import React, { useState } from "react"
-import { View, Text, Alert } from "react-native"
-import { TouchableOpacity } from "react-native-gesture-handler"
-import { keyName } from "../../Data"
-import { cloneIt, getData, log, storeData, deleteCard } from "../../HelperTools"
+import React from "react"
+import { View, Text, Alert, TouchableOpacity } from "react-native"
+import { log, deleteCard } from "../../HelperTools"
 
 export default Details = ({ route, navigation }) => {
   const { card } = route.params
-
-  const [loading, setLoading] = useState(false)
 
   // takes card object
   const header = (card) => {

@@ -1,15 +1,27 @@
 import React from "react"
-import { View, ScrollView, StyleSheet, Text , TouchableOpacity} from "react-native"
-import { findCardsList, log } from "../../../HelperTools"
+import { View, ScrollView, StyleSheet, Text } from "react-native"
 import AddCard from "./AddCard"
 import Card from "./Card"
-
-export default ListCard = ({ list, width, height,maxHeight, listCard , goToDetails}) => {
+// to render the list card
+export default ListCard = ({
+  list,
+  width,
+  height,
+  maxHeight,
+  listCard,
+  goToDetails,
+  value,
+  showInput,
+  onAddPress,
+  onChangeText,
+  onCancelPress,
+  onSavePress,
+}) => {
   const styles = StyleSheet.create({
     container: {
       width: width,
       height: height,
-      maxHeight:maxHeight,
+      maxHeight: maxHeight,
       backgroundColor: "#fff",
       borderRadius: 5,
       marginHorizontal: 15,
@@ -36,18 +48,41 @@ export default ListCard = ({ list, width, height,maxHeight, listCard , goToDetai
 
   const card = listCard(list)
   return (
-    <View style={[styles.container, card && card.length>0 && {height: maxHeight}]}>
+    <View
+      style={[
+        styles.container,
+        card && card.length > 0 && { height: maxHeight },
+      ]}
+    >
       <View style={styles.title}>
         <Text style={styles.titleText}>{list.title}</Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator ={false} contentContainerStyle={{marginVertical:40}}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ marginVertical: 40 }}
+      >
         {card &&
-          card.map((each) => 
-          <Card title={each.title} onPress={()=>goToDetails(each)} key={each.id.toString() + "Card"} />
-          )}
+          card.map((each) => (
+            <Card
+              title={each.title}
+              onPress={() => goToDetails(each)}
+              key={each.id.toString() + "Card"}
+            />
+          ))}
       </ScrollView>
       <View style={styles.bottomContainer}>
-        <AddCard text={"+ Add Card"} />
+        <AddCard
+          text={"+ Add Card"}
+          width={width}
+          addCard={true}
+          value={value}
+          showInput={showInput}
+          onChangeText={onChangeText}
+          onAddPress={onAddPress}
+          onCancelPress={onCancelPress}
+          onSavePress={onSavePress}
+          list={list}
+        />
       </View>
     </View>
   )

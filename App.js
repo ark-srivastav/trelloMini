@@ -1,19 +1,12 @@
-import { StatusBar } from "expo-status-bar"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator, HeaderBackground } from "@react-navigation/stack"
-import React, { useState } from "react"
-import { StyleSheet, Text, View } from "react-native"
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler"
-import { Input } from "./components"
+import React from "react"
+import { StyleSheet } from "react-native"
 import Boards from "./Screens/Boards"
 import List from "./Screens/List"
 import Details from "./Screens/Details"
 export default function App() {
   const Navigator = createStackNavigator()
-  const [value, setValue] = useState("")
-  const onChangeText = (text) => {
-    setValue(text)
-  }
 
   return (
     <NavigationContainer>
@@ -47,7 +40,7 @@ export default function App() {
             title: "",
             headerStyle: {
               backgroundColor: "#fff",
-              elevation:0
+              elevation: 0,
             },
             headerTintColor: "#000",
           }}

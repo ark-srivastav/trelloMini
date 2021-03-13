@@ -12,7 +12,7 @@ export default BoardFunctions = (navigation) => {
     try {
       await storeData(keyName, data)
       setValues(data)
-      const pp= await getData(keyName)
+      const pp = await getData(keyName)
       log(["data", pp])
       setLoading(false)
     } catch (error) {}

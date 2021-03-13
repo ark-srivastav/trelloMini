@@ -16,7 +16,9 @@ export default List = ({ route, navigation }) => {
     data,
     loading,
     list,
+    //for input purpose
     value,
+    showInput,
 
     //constants
     width,
@@ -26,6 +28,9 @@ export default List = ({ route, navigation }) => {
     //functions
     listCard,
     onChangeText,
+    onAddPress,
+    onCancelPress,
+    onSavePress,
     goToDetails,
   } = ListFunctions(route, navigation)
 
@@ -40,6 +45,7 @@ export default List = ({ route, navigation }) => {
         <Loader />
       ) : (
         <ScrollView
+          scrollEnabled={!showInput}
           horizontal={true}
           pagingEnabled={true}
           disableIntervalMomentum={true}
@@ -58,15 +64,23 @@ export default List = ({ route, navigation }) => {
                 data={data}
                 key={each.id + "list"}
                 value={value}
+                showInput={showInput}
                 onChangeText={onChangeText}
+                onAddPress={onAddPress}
                 goToDetails={goToDetails}
+                onCancelPress={onCancelPress}
+                onSavePress={onSavePress}
               />
             ))}
           <AddList
             height={height}
             width={width}
             value={value}
+            showInput={showInput}
             onChangeText={onChangeText}
+            onAddPress={onAddPress}
+            onCancelPress={onCancelPress}
+            onSavePress={onSavePress}
           />
         </ScrollView>
       )}

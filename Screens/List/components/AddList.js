@@ -1,11 +1,11 @@
-import React, { useState } from "react"
-import { View } from "react-native"
-import AddCard from "./AddCard"
-export default AddList = ({ height, width , value, onChangeText }) => {
-  const [showInput, setShow]=useState(false)
+import React from "react"
+import { View, TouchableOpacity, Text } from "react-native"
+
+// to populate the card which asks to add list (present at the end of the list)
+export default AddList = ({ height, width }) => {
   return (
     <View
-      key="addCard"
+      key="addList"
       style={{
         width: width,
         minHeight: height / 10,
@@ -18,7 +18,9 @@ export default AddList = ({ height, width , value, onChangeText }) => {
         alignItems: "center",
       }}
     >
-      <AddCard text={"Add List"} />
+      <TouchableOpacity disbled={true}>
+        <Text style={{ color: "#9ae18a", fontWeight: "bold" }}> Add List </Text>
+      </TouchableOpacity>
     </View>
   )
 }

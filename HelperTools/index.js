@@ -11,21 +11,16 @@ const storeData = async (key, value) => {
   try {
     const jsonValue = JSON.stringify(value)
     await AsyncStorage.setItem(key, jsonValue)
-    // log(["saved successfully", key, value, jsonValue])
-    // log(["key ", key])
-    // log(["value ", value])
-    // log(["jsonva  ", jsonValue])
     log("-- saved successfully")
   } catch (e) {
-    log(e)
-    // saving error
+    log([e])
+    // loggin error
   }
 }
 // get the data from cache in JSON format
 const getData = async (key) => {
   try {
     const jsonValue = await AsyncStorage.getItem(key)
-    log("--fetched successfully--")
     return jsonValue != null ? JSON.parse(jsonValue) : null
   } catch (e) {
     log(e)
@@ -81,6 +76,38 @@ const findLists = (boardId, data) => {
     )
   return result
 }
+
+const addCard=async (boardTitle, boardId, listId, listTitle, value)=>{
+  try{
+    let data= await getData(keyName)
+    let cards= data && data.cards
+    let uid= generateID()
+    cards.push({
+      title: value,
+      id: uid,
+      boardId:boardId,
+      boardTitle:boardTitle,
+      listId:listId,
+      listTitle:listTitle
+    })
+    let tempListObj= data &&  data.list && data.list.filter(each=> each.id === listId)[0]
+
+    //update cid (card id array of that list obj)
+    let tempCid= tempListObj && tempListObj.cid
+    //push the new generated uid into list uid's of cards of the list 
+    tempCid.push(uid)
+    // updated list obj
+    tempListObj={ ...tempListObj, cid:tempCid}
+    //now update the list array
+    let tempList= data && data.list && data.list.filter(each=> each.id!==listId)
+    tempList.push(tempListObj)
+    data={...data, list: tempList}
+    await storeData(keyName, data)
+
+  }catch(err){
+    log(["Error at addCard", err])
+  }
+}
 //update the cid array and get new obj for list
 //update the list array and get new data set
 const deleteCard = async (card) => {
@@ -113,6 +140,7 @@ const deleteCard = async (card) => {
     log(["Error at deleteCard func", err])
   }
 }
+//generate uid using current time stamp and base
 const generateID = () => {
   return Date.now().toString(36) + Math.random().toString(36).substr(2)
 }
@@ -127,4 +155,5 @@ export {
   findLists,
   deleteCard,
   generateID,
+  addCard
 }

@@ -4,7 +4,7 @@ import { View, ScrollView, Text, Dimensions } from "react-native"
 import BoardFunctions from "./BoardFunctions"
 import BoardCard from "./components/BoardCard"
 
-export default Board = ({ navigation }) => {
+export default Boards = ({ navigation }) => {
   const { values, onPress, loading } = BoardFunctions(navigation)
   const width = Dimensions.get("window").width
   const userTag = () => {
@@ -42,7 +42,7 @@ export default Board = ({ navigation }) => {
                   onPress(each.id, each.color, each.headerColor, each.title)
                 }
                 boardData={each}
-                key={each.id+"BoardsList"}
+                key={each.id + "BoardsList"}
               />
             )
           })
