@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar"
 import React from "react"
 import { View, ScrollView, Text, Dimensions } from "react-native"
+import { Loader } from "../../components"
 import BoardFunctions from "./BoardFunctions"
 import BoardCard from "./components/BoardCard"
 
@@ -46,7 +47,7 @@ export default Boards = ({ navigation }) => {
               />
             )
           })
-        : null}
+        : <Loader/>}
     </ScrollView>
   )
 }
