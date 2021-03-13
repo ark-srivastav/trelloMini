@@ -1,52 +1,32 @@
 import { StatusBar } from "expo-status-bar"
 import React from "react"
-import { View, Text, Alert, TouchableOpacity } from "react-native"
-import { log, deleteCard } from "../../HelperTools"
+import { View, Text, TouchableOpacity , StyleSheet} from "react-native"
+import DetailsFunction from "./DetailsFunction"
 
 export default Details = ({ route, navigation }) => {
-  const { card } = route.params
+  const { card, deleteFunction } = DetailsFunction(navigation, route)
+  // const { card } = route.params
 
   // takes card object
   const header = (card) => {
     return (
-      <View>
-        <Text>{card.title}</Text>
-        <View style={{ flexDirection: "row" }}>
-          <Text>{card.boardTitle}</Text>
-          <Text> in list </Text>
-          <Text>{card.listTitle}</Text>
+      <View style={{marginHorizontal:20}}>
+        <Text style={styles.headerText}>{card.title}</Text>
+        <View style={{ flexDirection: "row", marginTop:10 }}>
+          <Text style={styles.bottomText}>{card.boardTitle}</Text>
+          <Text style={styles.middleText}> in list </Text>
+          <Text style={styles.bottomText}>{card.listTitle}</Text>
         </View>
       </View>
     )
   }
 
-  const deleteConfirm = () => {
-    return Alert.alert(
-      "Delete Card",
-      "All actions will be removed from the activity feed. There is no undo",
-      [
-        {
-          text: "Cancel",
-          onPress: () => log("Cancel Pressed"),
-          style: "cancel",
-        },
-        {
-          text: "Yes, delete",
-          onPress: () => {
-            log("OK Pressed")
-            deleteCard(card)
-            navigation.navigate("Boards")
-          },
-        },
-      ],
-      { cancelable: true }
-    )
-  }
-  const del = () => {
+  const deleteOption = () => {
     return (
       <View>
-        <TouchableOpacity onPress={deleteConfirm}>
-          <Text style={{ color: "red" }}>Delete</Text>
+        <View style={{ borderWidth: 0.3, borderColor: "#4E4E4E", marginVertical:20 }} />
+        <TouchableOpacity onPress={deleteFunction} style={{marginHorizontal:20}}>
+          <Text style={{ color: "red" }}>Delete this card...</Text>
         </TouchableOpacity>
       </View>
     )
@@ -59,7 +39,26 @@ export default Details = ({ route, navigation }) => {
         backgroundColor={"#fff"}
       />
       {header(card)}
-      {del()}
+      {deleteOption()}
     </View>
   )
 }
+const styles = StyleSheet.create({
+  headerText: {
+    fontWeight: "bold",
+    fontSize: 20,
+    color:"#080011"
+  },
+  bottomText: {
+    fontWeight: "bold",
+    fontStyle: "italic",
+    color:"#080011",
+    fontSize: 18,
+  },
+  middleText:{
+    fontWeight: "bold",
+    fontSize:18,
+    marginHorizontal:5,
+    color:"#080011"
+  }
+})

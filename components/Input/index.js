@@ -8,7 +8,7 @@ export default Input = ({ value, placeholder, onChangeText ,color, width}) => {
         value={value}
         onChangeText={onChangeText}
         underlineColorAndroid={color}
-        style={{width:width && width*0.70}}
+        style={{width:width*0.60}}
       />
     </View>
   )

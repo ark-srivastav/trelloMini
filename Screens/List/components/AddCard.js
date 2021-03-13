@@ -16,7 +16,7 @@ export default AddCard = ({
   list,
 }) => {
   return addCard && showInput ? (
-    <>
+    <View style={{backgroundColor:"#fff", borderRadius:5, elevation:5,flex:1, width:width*0.6}}>
       <Input
         value={value}
         onChangeText={onChangeText}
@@ -26,15 +26,19 @@ export default AddCard = ({
       />
       <View
         style={{
-          width: width / 2,
+          flex:1,
           justifyContent: "space-between",
           flexDirection: "row",
           alignItems: "center",
+          backgroundColor:"#fff",
+          marginVertical:5,
+          marginHorizontal:5
         }}
       >
         <TouchableOpacity
           disabled={!value.length}
           onPress={() => onSavePress(list)}
+  
         >
           <Text
             style={{
@@ -49,7 +53,7 @@ export default AddCard = ({
           <Text style={{ color: "#47AFCD", fontSize: 12 }}>Cancel</Text>
         </TouchableOpacity>
       </View>
-    </>
+    </View>
   ) : (
     <TouchableOpacity onPress={onAddPress}>
       <Text style={{ color: "#9ae18a", fontWeight: "bold" }}> {text} </Text>

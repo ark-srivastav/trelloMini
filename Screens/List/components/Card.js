@@ -14,6 +14,7 @@ export default Card = ({ title, onPress }) => {
         marginVertical: 10,
         paddingHorizontal: 10,
         marginHorizontal: 5,
+        height:30
       }}
     >
       <Text>{title}</Text>

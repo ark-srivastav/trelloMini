@@ -5,15 +5,17 @@ export default BoardFunctions = (navigation) => {
   const [values, setValues] = useState({})
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    saveToCache() // for test
+    basicSetUp() // for test
   }, [])
 
-  const saveToCache = async () => {
+  const basicSetUp = async () => {
     try {
-      await storeData(keyName, data)
-      setValues(data)
-      const pp = await getData(keyName)
-      log(["data", pp])
+      let savedData= await getData(keyName)
+      if(savedData && Object.keys(savedData).length === 0 && savedData.constructor === Object){
+        await storeData(keyName, data)
+        savedData= data
+      }
+      setValues(savedData)
       setLoading(false)
     } catch (error) {}
   }
@@ -25,7 +27,6 @@ export default BoardFunctions = (navigation) => {
       headerColor: headerColor,
       title: title,
     })
-    log(["---- pressed -----", boardId])
   }
   return {
     //states

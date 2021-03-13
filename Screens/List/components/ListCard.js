@@ -26,6 +26,7 @@ export default ListCard = ({
       borderRadius: 5,
       marginHorizontal: 15,
       marginTop: 10,
+      flex:1,
     },
     title: {
       position: "absolute",
@@ -59,13 +60,14 @@ export default ListCard = ({
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ marginVertical: 40 }}
+        nestedScrollEnabled={true}
+        contentContainerStyle={{ marginVertical: 40 , backgroundColor: card.length > 0 ?"#e0e0e0":"#fff", flex:1}}
       >
         {card &&
           card.map((each) => (
             <Card
               title={each.title}
-              onPress={() => goToDetails(each)}
+              onPress={() => !showInput? goToDetails(each):null}
               key={each.id.toString() + "Card"}
             />
           ))}
